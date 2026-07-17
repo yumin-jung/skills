@@ -36,7 +36,7 @@ Two ways to install, two philosophies:
 
 ## Why These Skills Exist
 
-I built these skills to fix common failure modes I see when agents work on iOS apps.
+I built these skills to fix common failure modes I see when agents build real apps.
 
 ### #1: The Agent Hijacks Your Mouse To Drive The Simulator
 
@@ -45,6 +45,12 @@ I built these skills to fix common failure modes I see when agents work on iOS a
 **The Fix**: The Simulator has always had a headless control surface — `simctl` + `idb`. Screenshots, taps, swipes, and text input, all without moving your mouse or needing the window visible.
 
 This is what **[computer-use-ios](./skills/ios/computer-use-ios/SKILL.md)** does. The agent reaches for it automatically whenever the target is a simulator, and it wraps the sharp edges for you: px→pt coordinate conversion, ambiguous `booted` targets, keyboard-layout-proof text entry.
+
+### #2: Nobody Audits The Trust Boundaries
+
+**The Problem**: Security reviews happen never, or once a year, or only after the incident. Meanwhile every new endpoint, parser, and dependency quietly widens the attack surface.
+
+**The Fix**: Make the review cheap enough to run every few days. **[improve-codebase-security](./skills/engineering/improve-codebase-security/SKILL.md)** scopes your trust boundaries, traces each in-scope entry point to its sinks, and separates evidenced vulnerabilities from hygiene. It presents the results as a visual HTML report with coverage, concrete attack paths, severity and confidence, and before/after controls. Pick one, and it safely closes the boundary with a regression test.
 
 ## Reference
 
@@ -55,6 +61,12 @@ Skills I use daily for iOS work.
 **Model-invoked**
 
 - **[computer-use-ios](./skills/ios/computer-use-ios/SKILL.md)** — Control the iOS Simulator headlessly via `simctl` + `idb` (screenshots, tap, swipe, text). Used _instead of_ a computer-use / screen-control MCP whenever the target is a simulator — no mouse takeover, no focus stealing, works even if the sim window is hidden or on another monitor.
+
+### Engineering
+
+**User-invoked**
+
+- **[improve-codebase-security](./skills/engineering/improve-codebase-security/SKILL.md)** — Trace scoped entry points to security-sensitive sinks, report evidenced vulnerabilities and hardening opportunities with coverage and confidence, then safely fix the one you pick with a regression test.
 
 ## License
 

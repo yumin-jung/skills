@@ -16,6 +16,7 @@
     "skills"
   ],
   "skills": [
-    "./skills/ios/computer-use-ios"
+    "./skills/ios/computer-use-ios",
+    "./skills/engineering/improve-codebase-security"
   ]
 }
