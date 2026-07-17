@@ -1,11 +1,11 @@
 ---
 name: computer-use-ios
-description: Control the iOS Simulator headlessly via simctl + idb (screenshots, tap, swipe, text). Use this INSTEAD of a computer-use / screen-control MCP whenever the target is a simulator — no mouse takeover, no focus stealing, works even if the sim window is hidden or on another monitor.
+description: Control the iOS Simulator headlessly via simctl + idb (screenshots, tap, swipe, text). Use whenever the target of a look/tap/type/scroll action is a simulator — including when a computer-use or screen-control tool looks like the fit.
 ---
 
 # iOS Simulator control (simctl + idb)
 
-Never drive the iOS Simulator with a computer-use / screen-control tool (real mouse + screenshots of the whole desktop). Use this recipe instead. Computer-use is only for UI outside the simulator (real-device mirroring, Xcode dialogs, etc.).
+The Simulator is fully drivable headless: `simctl` + `idb` cover screenshots, taps, swipes, and text with no window, mouse, or focus involved — window visibility, monitor placement, and macOS focus are all irrelevant. Reserve computer-use / screen-control tools for UI outside the simulator (real-device mirroring, Xcode dialogs, etc.).
 
 ## Prerequisites
 
@@ -48,7 +48,7 @@ idb ui text  --udid <UDID> "hello"        # hardware-keyboard path — immune to
 idb ui key   --udid <UDID> 40             # HID keycode (40 = Return)
 ```
 
-After each action: sleep ~1s, re-screenshot, verify. Don't chain taps blind.
+After each action: sleep ~1s, re-screenshot, and confirm the expected change is on screen before the next action.
 
 ## App lifecycle / shortcuts (simctl, faster than tapping)
 
@@ -64,4 +64,3 @@ xcrun simctl io <UDID> recordVideo out.mp4   # ctrl-c to stop
 - Tap target off by a bit → you probably forgot px→pt conversion.
 - `idb` cold-starts a companion per UDID on first use; first command may take a few seconds.
 - Text lands wherever focus is — tap the field first, verify the cursor/keyboard appeared, then `ui text`.
-- Simulator window visibility, monitor placement, and macOS focus are all irrelevant — never switch displays or bring Simulator forward for this.
