@@ -1,0 +1,23 @@
+{
+  "name": "yumin-jung",
+  "owner": {
+    "name": "Yumin Jung",
+    "url": "https://github.com/yumin-jung"
+  },
+  "description": "Yumin Jung's agent skills, as an installable Claude Code plugin.",
+  "plugins": [
+    {
+      "name": "yumin-jung-skills",
+      "source": "./",
+      "description": "Agent skills for iOS development — headless iOS Simulator control via simctl + idb, and more to come.",
+      "category": "ios",
+      "keywords": [
+        "ios",
+        "simulator",
+        "idb",
+        "simctl",
+        "skills"
+      ]
+    }
+  ]
+}
