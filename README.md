@@ -15,10 +15,10 @@ git clone --recurse-submodules https://github.com/yumin-jung/skills.git
 cd skills && ./scripts/link-skills.sh
 ```
 
-`link-skills.sh` symlinks every skill in `skills/`, plus the third-party ones I've whitelisted in the script, into `~/.claude/skills` (Claude Code) and `~/.agents/skills` (Codex and other Agent Skills-compatible harnesses). Symlinks, not copies — so a pull is the update:
+`link-skills.sh` symlinks every skill in `skills/`, plus the third-party ones I've whitelisted in the script, into `~/.claude/skills` (Claude Code) and `~/.agents/skills` (Codex and other Agent Skills-compatible harnesses). Symlinks, not copies — so a pull is the update. One line brings everything current: my skills, the authors' latest, and anything else [skills.sh](https://skills.sh) installed globally.
 
 ```bash
-git pull && git submodule update --remote && ./scripts/link-skills.sh
+git pull && git submodule update --remote && ./scripts/link-skills.sh && npx skills@latest update -g -y
 ```
 
 ## Install my skills
