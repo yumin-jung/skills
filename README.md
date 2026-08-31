@@ -68,6 +68,29 @@ Skills I use daily for iOS work.
 
 - **[improve-codebase-security](./skills/engineering/improve-codebase-security/SKILL.md)** — Trace scoped entry points to security-sensitive sinks, report evidenced vulnerabilities and hardening opportunities with coverage and confidence, then safely fix the one you pick with a regression test.
 
+## Third-party skills I use
+
+The skills below aren't mine — they live in their authors' repos, tracked here as git submodules under `vendor/`, so this repo points at the original rather than copying it. `scripts/link-skills.sh` symlinks the ones I use into `~/.claude/skills` and `~/.agents/skills`.
+
+| Skill | Author |
+| --- | --- |
+| [tdd](./vendor/mattpocock-skills/skills/engineering/tdd/SKILL.md) | [mattpocock/skills](https://github.com/mattpocock/skills) |
+| [grilling](./vendor/mattpocock-skills/skills/productivity/grilling/SKILL.md) | [mattpocock/skills](https://github.com/mattpocock/skills) |
+| [grill-with-docs](./vendor/mattpocock-skills/skills/engineering/grill-with-docs/SKILL.md) | [mattpocock/skills](https://github.com/mattpocock/skills) |
+| [implement](./vendor/mattpocock-skills/skills/engineering/implement/SKILL.md) | [mattpocock/skills](https://github.com/mattpocock/skills) |
+| [improve-codebase-architecture](./vendor/mattpocock-skills/skills/engineering/improve-codebase-architecture/SKILL.md) | [mattpocock/skills](https://github.com/mattpocock/skills) |
+| [writing-for-agents](./vendor/mattpocock-skills/skills/productivity/writing-for-agents/SKILL.md) | [mattpocock/skills](https://github.com/mattpocock/skills) |
+| [make-interfaces-feel-better](./vendor/make-interfaces-feel-better/skills/make-interfaces-feel-better/SKILL.md) | [jakubkrehel/make-interfaces-feel-better](https://github.com/jakubkrehel/make-interfaces-feel-better) |
+
+Set them up, then pull the authors' latest whenever you want:
+
+```bash
+git submodule update --init --remote
+./scripts/link-skills.sh
+```
+
+Only the skills in `skills/` are published to [skills.sh](https://skills.sh/yumin-jung/skills) and the plugin — vendored ones stay with their authors.
+
 ## License
 
 MIT

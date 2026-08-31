@@ -1,0 +1,6 @@
+[submodule "vendor/mattpocock-skills"]
+	path = vendor/mattpocock-skills
+	url = https://github.com/mattpocock/skills.git
+[submodule "vendor/make-interfaces-feel-better"]
+	path = vendor/make-interfaces-feel-better
+	url = https://github.com/jakubkrehel/make-interfaces-feel-better.git
