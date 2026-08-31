@@ -1,28 +1,35 @@
-# Skills For iOS Engineers
+# Skills I Use
 
 [![skills.sh](https://skills.sh/b/yumin-jung/skills)](https://skills.sh/yumin-jung/skills)
 
-My agent skills for real iOS development, structured after [mattpocock/skills](https://github.com/mattpocock/skills).
+Every agent skill I actually use, in one place: the ones I wrote, and the ones I borrow from other authors. Borrowed ones stay in their authors' repos as git submodules under `vendor/`, so this repo points at the original instead of forking it. Structured after [mattpocock/skills](https://github.com/mattpocock/skills).
 
 These skills are designed to be small, easy to adapt, and composable. They work with any model. Hack around with them. Make them your own. Enjoy.
 
-## Quickstart (30-second setup)
+## My setup
 
-1. Run the skills.sh installer:
+Clone with submodules, then link the whole set into your agents:
+
+```bash
+git clone --recurse-submodules https://github.com/yumin-jung/skills.git
+cd skills && ./scripts/link-skills.sh
+```
+
+`link-skills.sh` symlinks every skill in `skills/`, plus the third-party ones I've whitelisted in the script, into `~/.claude/skills` (Claude Code) and `~/.agents/skills` (Codex and other Agent Skills-compatible harnesses). Symlinks, not copies — so a pull is the update:
+
+```bash
+git pull && git submodule update --remote && ./scripts/link-skills.sh
+```
+
+## Install my skills
+
+Only what's in `skills/` is mine to publish. Two ways to get it:
 
 ```bash
 npx skills@latest add yumin-jung/skills
 ```
 
-2. Pick the skills you want, and which coding agents you want to install them on.
-
-3. Bam - you're ready to go.
-
-## Install as a Claude Code plugin
-
-Prefer a plug-and-play install you don't maintain by hand? These skills also ship as a native [Claude Code plugin](https://code.claude.com/docs/en/plugins). Instead of copying editable files into your repo, the plugin installs the whole skill set as a managed bundle that updates when I ship a new version — you subscribe rather than fork.
-
-Inside Claude Code:
+Pick the skills you want and which coding agents to install them on. Or install the same set as a native [Claude Code plugin](https://code.claude.com/docs/en/plugins):
 
 ```
 /plugin marketplace add yumin-jung/skills
@@ -34,7 +41,7 @@ Two ways to install, two philosophies:
 - **[skills.sh](https://skills.sh/yumin-jung/skills)** copies the skills into your project so you can hack on them and make them your own.
 - **The plugin** keeps them as a read-only, always-current bundle you don't edit — best when you just want my set to work and follow along as it evolves.
 
-## Why These Skills Exist
+## Why I Wrote Mine
 
 I built these skills to fix common failure modes I see when agents build real apps.
 
@@ -52,11 +59,9 @@ This is what **[computer-use-ios](./skills/ios/computer-use-ios/SKILL.md)** does
 
 **The Fix**: Make the review cheap enough to run every few days. **[improve-codebase-security](./skills/engineering/improve-codebase-security/SKILL.md)** scopes your trust boundaries, traces each in-scope entry point to its sinks, and separates evidenced vulnerabilities from hygiene. It presents the results as a visual HTML report with coverage, concrete attack paths, severity and confidence, and before/after controls. Pick one, and it safely closes the boundary with a regression test.
 
-## Reference
+## Mine
 
 ### iOS
-
-Skills I use daily for iOS work.
 
 **Model-invoked**
 
@@ -68,29 +73,30 @@ Skills I use daily for iOS work.
 
 - **[improve-codebase-security](./skills/engineering/improve-codebase-security/SKILL.md)** — Trace scoped entry points to security-sensitive sinks, report evidenced vulnerabilities and hardening opportunities with coverage and confidence, then safely fix the one you pick with a regression test.
 
-## Third-party skills I use
+## Borrowed
 
-The skills below aren't mine — they live in their authors' repos, tracked here as git submodules under `vendor/`, so this repo points at the original rather than copying it. `scripts/link-skills.sh` symlinks the ones I use into `~/.claude/skills` and `~/.agents/skills`.
+Not mine — credit and copyright stay with their authors. `vendor/` holds a commit pointer to each upstream repo, nothing more, so these are never republished from here.
 
-| Skill | Author |
+### [mattpocock/skills](https://github.com/mattpocock/skills)
+
+| Skill | What it does |
 | --- | --- |
-| [tdd](./vendor/mattpocock-skills/skills/engineering/tdd/SKILL.md) | [mattpocock/skills](https://github.com/mattpocock/skills) |
-| [grilling](./vendor/mattpocock-skills/skills/productivity/grilling/SKILL.md) | [mattpocock/skills](https://github.com/mattpocock/skills) |
-| [grill-with-docs](./vendor/mattpocock-skills/skills/engineering/grill-with-docs/SKILL.md) | [mattpocock/skills](https://github.com/mattpocock/skills) |
-| [implement](./vendor/mattpocock-skills/skills/engineering/implement/SKILL.md) | [mattpocock/skills](https://github.com/mattpocock/skills) |
-| [improve-codebase-architecture](./vendor/mattpocock-skills/skills/engineering/improve-codebase-architecture/SKILL.md) | [mattpocock/skills](https://github.com/mattpocock/skills) |
-| [writing-for-agents](./vendor/mattpocock-skills/skills/productivity/writing-for-agents/SKILL.md) | [mattpocock/skills](https://github.com/mattpocock/skills) |
-| [make-interfaces-feel-better](./vendor/make-interfaces-feel-better/skills/make-interfaces-feel-better/SKILL.md) | [jakubkrehel/make-interfaces-feel-better](https://github.com/jakubkrehel/make-interfaces-feel-better) |
+| [tdd](./vendor/mattpocock-skills/skills/engineering/tdd/SKILL.md) | The red → green loop, and what makes a test worth keeping. |
+| [grilling](./vendor/mattpocock-skills/skills/productivity/grilling/SKILL.md) | Relentless interview that walks the design tree before you build. |
+| [grill-with-docs](./vendor/mattpocock-skills/skills/engineering/grill-with-docs/SKILL.md) | The same interview, writing ADRs and a glossary as it goes. |
+| [implement](./vendor/mattpocock-skills/skills/engineering/implement/SKILL.md) | Build a piece of work from a spec or a set of tickets. |
+| [to-spec](./vendor/mattpocock-skills/skills/engineering/to-spec/SKILL.md) | Turn the conversation into a spec on the issue tracker. |
+| [to-tickets](./vendor/mattpocock-skills/skills/engineering/to-tickets/SKILL.md) | Break a plan into tracer-bullet tickets with blocking edges. |
+| [code-review](./vendor/mattpocock-skills/skills/engineering/code-review/SKILL.md) | Two-axis review of a diff: standards and spec, in parallel. |
+| [improve-codebase-architecture](./vendor/mattpocock-skills/skills/engineering/improve-codebase-architecture/SKILL.md) | Find deepening opportunities, report them, grill the one you pick. |
+| [writing-for-agents](./vendor/mattpocock-skills/skills/productivity/writing-for-agents/SKILL.md) | How to write a skill, an AGENTS.md, a CLAUDE.md. |
 
-Set them up, then pull the authors' latest whenever you want:
+### [jakubkrehel/make-interfaces-feel-better](https://github.com/jakubkrehel/make-interfaces-feel-better)
 
-```bash
-git submodule update --init --remote
-./scripts/link-skills.sh
-```
-
-Only the skills in `skills/` are published to [skills.sh](https://skills.sh/yumin-jung/skills) and the plugin — vendored ones stay with their authors.
+| Skill | What it does |
+| --- | --- |
+| [make-interfaces-feel-better](./vendor/make-interfaces-feel-better/skills/make-interfaces-feel-better/SKILL.md) | The small details — motion, surfaces, type, icons — that make UI feel finished. |
 
 ## License
 
-MIT
+MIT for what's in `skills/`. Everything under `vendor/` is governed by its own repo's license.

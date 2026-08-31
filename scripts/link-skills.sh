@@ -15,10 +15,13 @@ REPO="$(cd "$(dirname "$0")/.." && pwd)"
 DESTS=("$HOME/.claude/skills" "$HOME/.agents/skills")
 
 VENDOR=(
+  vendor/mattpocock-skills/skills/engineering/code-review
   vendor/mattpocock-skills/skills/engineering/tdd
   vendor/mattpocock-skills/skills/engineering/grill-with-docs
   vendor/mattpocock-skills/skills/engineering/implement
   vendor/mattpocock-skills/skills/engineering/improve-codebase-architecture
+  vendor/mattpocock-skills/skills/engineering/to-spec
+  vendor/mattpocock-skills/skills/engineering/to-tickets
   vendor/mattpocock-skills/skills/productivity/grilling
   vendor/mattpocock-skills/skills/productivity/writing-for-agents
   vendor/make-interfaces-feel-better/skills/make-interfaces-feel-better
