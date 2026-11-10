@@ -1,6 +1,6 @@
 {
   "name": "yumin-jung-skills",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Agent skills for iOS development — headless iOS Simulator control via simctl + idb, and more to come.",
   "author": {
     "name": "Yumin Jung",
@@ -17,6 +17,7 @@
   ],
   "skills": [
     "./skills/ios/computer-use-ios",
-    "./skills/engineering/improve-codebase-security"
+    "./skills/engineering/improve-codebase-security",
+    "./skills/productivity/to-poster"
   ]
 }

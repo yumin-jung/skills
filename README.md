@@ -59,6 +59,12 @@ This is what **[computer-use-ios](./skills/ios/computer-use-ios/SKILL.md)** does
 
 **The Fix**: Make the review cheap enough to run every few days. **[improve-codebase-security](./skills/engineering/improve-codebase-security/SKILL.md)** scopes your trust boundaries, traces each in-scope entry point to its sinks, and separates evidenced vulnerabilities from hygiene. It presents the results as a visual HTML report with coverage, concrete attack paths, severity and confidence, and before/after controls. Pick one, and it safely closes the boundary with a regression test.
 
+### #3: Team Visuals Are Either Slow Or Quietly Wrong
+
+**The Problem**: Explaining an architecture, a release scope, or a benchmark to the team takes an afternoon in a slide tool. Ask an agent instead and you get one generic layout, with a number that drifted on the way.
+
+**The Fix**: **[to-poster](./skills/productivity/to-poster/SKILL.md)** pins the facts in a fact sheet first, renders about 12 genuinely different candidates in one monochrome house style, and has a panel score them: a fact checker, a teammate who missed the meeting, a designer, and a lead who checks that each page does the job it was made for. The best 8 land on a board; you pick one and get a PNG and a PDF.
+
 ## Mine
 
 ### iOS
@@ -72,6 +78,12 @@ This is what **[computer-use-ios](./skills/ios/computer-use-ios/SKILL.md)** does
 **User-invoked**
 
 - **[improve-codebase-security](./skills/engineering/improve-codebase-security/SKILL.md)** — Trace scoped entry points to security-sensitive sinks, report evidenced vulnerabilities and hardening opportunities with coverage and confidence, then safely fix the one you pick with a regression test.
+
+### Productivity
+
+**User-invoked**
+
+- **[to-poster](./skills/productivity/to-poster/SKILL.md)** — Turn an architecture, plan, release scope, or benchmark into a one-page image for teammates: about 12 candidates rendered in a monochrome house style, scored by a judge panel, the best 8 on a board for you to pick; PNG and PDF out.
 
 ## Borrowed
 

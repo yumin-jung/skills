@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Docs search architecture</title>
+<link rel="stylesheet" href="../style.css">
+<style>
+  .main { display: grid; grid-template-columns: 240px 112px 1fr 112px 240px; align-items: stretch; flex: 1; min-height: 0; }
+  .group { display: flex; flex-direction: column; }
+  /* Sibling boxes share one top line: the row takes its content height and sits centered in the boundary. */
+  .inner { display: grid; grid-template-columns: 1fr 36px 1fr 36px 1fr; align-items: stretch; margin: auto 0; }
+  .inner > .arrow { align-self: center; min-width: 0; }
+  .inner .box { padding: 18px 16px; }
+  .main .box p { line-height: 1.75; }
+  .sources { display: flex; flex-direction: column; gap: 14px; }
+  .sources .box { padding: 14px 18px; flex: 1; display: flex; flex-direction: column; justify-content: center; }
+  .sources .box h3 { margin-bottom: 4px; }
+</style>
+</head>
+<body>
+<div class="page short">
+  <div class="title-row">
+    <h1 class="title"><span class="name">Docs search</span> <span class="what">— how a staff question becomes a cited answer</span></h1>
+    <span class="meta">Internal · one service · three read-only sources</span>
+  </div>
+  <hr class="rule">
+  <div class="content">
+    <div class="main">
+      <div class="box" style="display:flex; flex-direction:column; justify-content:center; gap:14px;">
+        <h3 style="margin:0">Chat and web</h3>
+        <ul class="dash-list"><li>Team chat · intranet</li><li>A thread per question</li><li>Follow-ups in the thread</li><li>Answers cite a source</li></ul>
+        <span class="pill" style="align-self:flex-start; padding:4px 12px; font-size:14px; font-weight:700">Signed-in staff only</span>
+      </div>
+      <div class="link"><b>HTTPS</b><div class="arrow both"></div><small>no public URL</small></div>
+      <div class="group">
+        <div class="group-h"><b>Search service</b><span>one container · scales to zero at night</span></div>
+        <div class="inner">
+          <div class="box"><h3>Gateway</h3><p>Checks the session<br>Throttles per person<br>Logs the question</p></div>
+          <div class="arrow both"></div>
+          <div class="box"><h3>Retriever</h3><p>Finds 20 passages<br>Keeps the best 5<br>Drops stale pages</p></div>
+          <div class="arrow"></div>
+          <div class="box"><h3>Answer writer</h3><p>Drafts from 5 passages<br>Adds citations<br>"Not found" if empty</p></div>
+        </div>
+        <div class="foot">Code <span class="mono">services/search</span> → private repo · keys in the vault (never in the repo)</div>
+      </div>
+      <div class="link"><b>Read-only</b><div class="arrow"></div><small>nightly index</small></div>
+      <div class="sources">
+        <div class="box"><h3>Wiki</h3><p class="note">Pages, attachments · read</p></div>
+        <div class="box"><h3>Tickets</h3><p class="note">Closed tickets only · read</p></div>
+        <div class="box"><h3>Code</h3><p class="note">Default branch · read</p></div>
+      </div>
+    </div>
+    <div class="grid-3 divided" style="gap:0">
+      <div class="sec-ruled"><div class="sec-h"><h2>One question, start to finish</h2></div>
+        <ol class="steps">
+          <li><span class="num sm">1</span>A question arrives with the person's session</li>
+          <li><span class="num sm">2</span>The retriever pulls passages from the index</li>
+          <li><span class="num sm">3</span>The writer answers with citations</li>
+          <li><span class="num sm">4</span>The answer posts in the same thread</li>
+        </ol>
+      </div>
+      <div class="sec-ruled"><div class="sec-h"><h2>Safeguards</h2></div>
+        <ul class="dash-list stack" style="gap:8px"><li>Sources are read-only; nothing writes back</li><li>Private pages stay out of the index</li><li>No answer without at least one citation</li></ul>
+      </div>
+      <div class="sec-ruled"><div class="sec-h"><h2>Operations</h2></div>
+        <ul class="dash-list stack" style="gap:8px"><li>Index rebuilds nightly at 02:00</li><li>Alert when p95 latency passes 4&nbsp;s</li><li>Questions kept 30 days, then deleted</li></ul>
+      </div>
+    </div>
+  </div>
+</div>
+</body>
+</html>

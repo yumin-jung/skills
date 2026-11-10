@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Receipt OCR engines</title>
+<link rel="stylesheet" href="../style.css">
+</head>
+<body>
+<div class="page">
+  <div class="eyebrow">Receipt reading · Engine A vs Engine B · laptop CPU · 1,200 receipts · 2026-02-18</div>
+  <h1 class="title">Engine B reads receipts more accurately than Engine A on all four sets</h1>
+  <p class="dek">Character errors fall from 6.8% to 4.1% on printed receipts and from 18.4% to 12.6% on faded paper. Engine B also handles 112 pages a minute instead of 38 and peaks at 610&nbsp;MB instead of 2,140&nbsp;MB.</p>
+  <hr class="rule">
+  <div class="content">
+    <div class="grid-2" style="row-gap:30px">
+      <section>
+        <div class="sec-h"><div><h2>1. Accuracy on labeled receipts</h2><span class="sub">Character error %, lower is better</span></div>
+          <div class="legend"><span><i style="background:var(--s1)"></i>Engine A (current)</span><span><i style="background:var(--s3)"></i>Engine B (new)</span></div></div>
+        <div class="bars" style="--label-w:230px">
+          <div class="lab"><b>Printed receipts</b><small>Labeled text · 500 receipts</small></div>
+          <div class="vals"><div class="bar" style="--v:6.8; --max:20"><i></i>6.8</div><div class="bar s3" style="--v:4.1; --max:20"><i></i><span class="best">4.1</span></div></div>
+          <div class="lab"><b>Handwritten notes</b><small>Margins and totals · 300</small></div>
+          <div class="vals"><div class="bar" style="--v:14.2; --max:20"><i></i>14.2</div><div class="bar s3" style="--v:11.9; --max:20"><i></i><span class="best">11.9</span></div></div>
+          <div class="lab"><b>Photos at an angle</b><small>Phone camera · 250</small></div>
+          <div class="vals"><div class="bar" style="--v:9.7; --max:20"><i></i>9.7</div><div class="bar s3" style="--v:5.3; --max:20"><i></i><span class="best">5.3</span></div></div>
+          <div class="lab"><b>Faded thermal paper</b><small>Older than one year · 150</small></div>
+          <div class="vals"><div class="bar" style="--v:18.4; --max:20"><i></i>18.4</div><div class="bar s3" style="--v:12.6; --max:20"><i></i><span class="best">12.6</span></div></div>
+        </div>
+      </section>
+      <section>
+        <div class="sec-h"><div><h2>2. Speed, memory, size</h2><span class="sub">Speed higher is better · memory and size lower is better</span></div>
+          <div class="legend"><span><i style="background:var(--s1)"></i>Engine A</span><span><i style="background:var(--s3)"></i>Engine B</span></div></div>
+        <div class="bars" style="--label-w:230px">
+          <div class="lab"><b>Pages per minute</b><small>Same laptop, model load included</small></div>
+          <div class="vals"><div class="bar" style="--v:38; --max:120"><i></i>38</div><div class="bar s3" style="--v:112; --max:120"><i></i><span class="best">112</span></div></div>
+          <div class="lab"><b>Peak memory</b><small>Whole process</small></div>
+          <div class="vals"><div class="bar" style="--v:2140; --max:2200"><i></i>2,140 MB</div><div class="bar s3" style="--v:610; --max:2200"><i></i><span class="best">610 MB</span></div></div>
+          <div class="lab"><b>Download size</b><small>Model files</small></div>
+          <div class="vals"><div class="bar" style="--v:420; --max:440"><i></i>420 MB</div><div class="bar s3" style="--v:180; --max:440"><i></i><span class="best">180 MB</span></div></div>
+        </div>
+      </section>
+      <section>
+        <div class="sec-h"><div><h2>3. Languages</h2><span class="sub">Engine B reads 12 languages and no Korean</span></div></div>
+        <table class="tbl">
+          <thead><tr><th>Engine</th><th class="n">Languages</th><th>Korean</th><th>Keeps</th></tr></thead>
+          <tbody>
+            <tr><td>Engine A <small>current default</small></td><td class="n">80</td><td>Yes</td><td>All other languages</td></tr>
+            <tr class="rec"><td>Engine B <span class="tag">New</span> <small>added this release</small></td><td class="n">12</td><td>No</td><td>English and 11 European languages</td></tr>
+          </tbody>
+        </table>
+        <p class="note" style="margin-top:10px">The app picks Engine B when the receipt language is one of the 12, and Engine A otherwise.</p>
+      </section>
+      <section>
+        <div class="sec-h"><div><h2>4. Where the errors come from</h2><span class="sub">% of labeled characters, lower is better</span></div>
+          <div class="legend"><span><i style="background:var(--s1); border-radius:50%"></i>A</span><span><i style="background:var(--s3); border-radius:50%"></i>B</span></div></div>
+        <div class="dots" style="--label-w:190px">
+          <div class="lab">Missed characters</div>
+          <div class="track"><div class="seg" style="--a:1.2; --b:3.1; --max:4"></div><div class="dot s1" style="--v:3.1; --max:4"></div><div class="dot" style="--v:1.2; --max:4"></div></div>
+          <div class="vals"><span>3.1</span><span class="best">1.2</span></div>
+          <div class="lab">Extra characters</div>
+          <div class="track"><div class="seg" style="--a:0.6; --b:0.9; --max:4"></div><div class="dot s1" style="--v:0.9; --max:4"></div><div class="dot" style="--v:0.6; --max:4"></div></div>
+          <div class="vals"><span>0.9</span><span class="best">0.6</span></div>
+          <div class="lab">Wrong characters</div>
+          <div class="track"><div class="seg" style="--a:2.0; --b:2.3; --max:4"></div><div class="dot s1" style="--v:2.0; --max:4"></div><div class="dot" style="--v:2.3; --max:4"></div></div>
+          <div class="vals"><span class="best">2.0</span><span>2.3</span></div>
+        </div>
+        <p class="note" style="margin-top:10px">Most of the gap is missed characters. Engine B swaps slightly more look-alike characters.</p>
+      </section>
+    </div>
+  </div>
+  <div class="footer">Both engines ran the app's own import path on the same laptop (8-core CPU, 16 GB), model load included, three runs each. Error rate = edit distance over labeled characters after the same normalization. Thermal-paper labels were typed by two people and reconciled. Source: benchmark run 2026-02-17.</div>
+</div>
+</body>
+</html>
