@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Sign-up and first export</title>
+<link rel="stylesheet" href="../style.css">
+<style>
+  .lanes .cell { min-height: 74px; padding: 12px 10px 8px; }
+  .lanes .cell .card { margin-top: 2px; }
+  .files { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
+  .files .box { padding: 12px 16px; display: flex; flex-direction: column; gap: 6px; }
+</style>
+</head>
+<body>
+<div class="page a4">
+  <div class="eyebrow">Onboarding · sign-up and first export (1/2) · design review · 2026-03-02</div>
+  <h1 class="title">Who does what, when: sign-up in 3 steps, export in 4</h1>
+  <p class="dek">Gray columns happen once at sign-up; white columns happen on every export. How step ② stores the session is still being decided; what it writes is listed below.</p>
+  <hr class="rule">
+  <div class="content" style="gap:22px">
+    <div class="lanes" style="--cols:7">
+      <div class="ph"></div>
+      <div class="ph band" style="grid-column: span 3">Sign-up · storage still being decided</div>
+      <div class="ph" style="grid-column: span 4">Export · every time</div>
+
+      <div class="actor"><b>Person</b><small>at a browser</small></div>
+      <div class="cell band"><div class="card"><span class="num">1</span><b>Signs up</b><span>Work email</span></div></div>
+      <div class="cell band"></div><div class="cell band"></div>
+      <div class="cell"><div class="card"><span class="num">3</span><b>Asks to export</b><span>March, as a PDF</span></div></div>
+      <div class="cell"></div><div class="cell"></div>
+      <div class="cell"><div class="card"><span class="num">7</span><b>Gets the file</b><span>Link valid 24&nbsp;h</span></div></div>
+
+      <div class="actor"><b>Web app</b><small>this browser tab</small></div>
+      <div class="cell band"></div>
+      <div class="cell band"><div class="card"><span class="num">2</span><b>Saves the session</b><span>Storage still open</span></div></div>
+      <div class="cell band"></div><div class="cell"></div><div class="cell"></div>
+      <div class="cell"><div class="card"><span class="num">6</span><b>Shows the link</b><span>And emails a copy</span></div></div>
+      <div class="cell"></div>
+
+      <div class="actor"><b>Auth service</b><small>3 places, listed below</small></div>
+      <div class="cell band"></div>
+      <div class="cell band"><div class="card dash"><b>Writes 3 places</b><span>2 new entries + 1 line in an existing file</span></div></div>
+      <div class="cell band"></div><div class="cell"></div><div class="cell"></div><div class="cell"></div><div class="cell"></div>
+
+      <div class="actor"><b>Export worker</b><small>background queue</small></div>
+      <div class="cell band"></div><div class="cell band"></div><div class="cell band"></div><div class="cell"></div>
+      <div class="cell"><div class="card"><span class="num">4</span><b>Builds the PDF</b><span>One month per job</span></div></div>
+      <div class="cell"></div><div class="cell"></div>
+
+      <div class="actor"><b>Storage</b><small>file bucket</small></div>
+      <div class="cell band"></div><div class="cell band"></div><div class="cell band"></div><div class="cell"></div><div class="cell"></div>
+      <div class="cell"><div class="card"><span class="num">5</span><b>Keeps the file</b><span>Deleted after 7 days</span></div></div>
+      <div class="cell"></div>
+    </div>
+
+    <div>
+      <div class="sec-h"><div><h2><span class="num line" style="vertical-align:2px; margin-right:6px">2</span>Where the auth service actually writes</h2><span class="sub">Production setup · staging uses the same keys with a <span class="mono">stg_</span> prefix · a missing table is skipped</span></div></div>
+      <div class="files">
+        <div class="box"><span class="label">Session store · key</span><span class="path">sessions/&lt;user-id&gt;</span><span><span class="tag">New entry</span></span><p class="note">Expires after 30 days of no use.</p></div>
+        <div class="box"><span class="label">Audit log · row</span><span class="path">audit.signups</span><span><span class="tag line">Existing table · one row</span></span><div class="code">{ "event": "signup", "via": "email" }</div></div>
+        <div class="box"><span class="label">Mail queue · job</span><span class="path">jobs/welcome-mail</span><span><span class="tag">New entry</span></span><p class="note">Sent once; retried 3 times.</p></div>
+        <div class="box"><span class="label">Config · flag</span><span class="path">config/features.json</span><span><span class="tag line">Existing file · one line</span></span><div class="code">"export_pdf": true</div></div>
+      </div>
+    </div>
+  </div>
+  <div class="footer">Every entry above carries a <span class="mono">created_by: auth</span> marker; cleanup jobs only touch entries with that marker. Export runs in the background queue and never blocks the tab. Step details for errors and retries are on page 2.</div>
+</div>
+</body>
+</html>

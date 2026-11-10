@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Database load decision</title>
+<link rel="stylesheet" href="../style.css">
+<style>
+  .opts { display: grid; grid-template-columns: 1.2fr 1fr 1fr; gap: 22px; }
+  .opts h3 { font-size: 21px; }
+  .kpi .v { font-size: 54px; }
+  .opts .box { display: flex; flex-direction: column; gap: 8px; }
+  .opts .box.chosen { border-width: 3px; }
+  .opts .cost { margin-top: auto; padding-top: 10px; border-top: 1px solid var(--line); font-size: 14px; font-weight: 700; }
+  .bottom { display: grid; grid-template-columns: 1fr 1fr; gap: 56px; }
+</style>
+</head>
+<body>
+<div class="page short">
+  <div class="eyebrow">Database load · decision record · platform team · 2026-02-10</div>
+  <h1 class="title">We keep Postgres and add one read replica</h1>
+  <p class="dek">Reads are 92% of queries and peak at 4,800 per second. A replica takes them off the primary for $310 a month; moving to a new database would take a quarter and solve a write problem we do not have.</p>
+  <hr class="rule">
+  <div class="content" style="gap:36px">
+    <div class="opts">
+      <div class="box chosen"><h3>Add a read replica <span class="tag">Chosen</span></h3>
+        <ul class="dash-list"><li>Reports and search read from the replica</li><li>No schema or code change beyond the connection</li><li>Up to 1&nbsp;s behind the primary; fine for reports</li><li>Failover stays on the primary as today</li></ul>
+        <div class="cost">$310 / month · 1 week</div></div>
+      <div class="box dash"><h3>Bigger primary <span class="tag mute">Not now</span></h3>
+        <ul class="dash-list"><li>Simplest change</li><li>Only doubles headroom</li><li>Next size up costs 2.4 times as much</li><li>Same problem again within a year</li></ul>
+        <div class="cost">$740 / month · 1 day</div></div>
+      <div class="box dash"><h3>Move to a new database <span class="tag mute">Not doing</span></h3>
+        <ul class="dash-list"><li>Built for write scale we do not need</li><li>Rewrites 60 queries</li><li>Team has no experience running it</li><li>Two systems during the move</li></ul>
+        <div class="cost">Unknown · about a quarter</div></div>
+    </div>
+    <div class="bottom">
+      <div><div class="sec-h"><div><h2>What we expect</h2><span class="sub">Measured on staging with last month's traffic</span></div></div>
+        <div class="kpis">
+          <div class="kpi"><div class="k">Primary CPU at peak</div><div class="v">41<small>%</small></div><div class="from">from 87%</div></div>
+          <div class="kpi"><div class="k">p95 read time</div><div class="v">70<small>ms</small></div><div class="from">from 180 ms</div></div>
+          <div class="kpi"><div class="k">Added cost</div><div class="v">$310</div><div class="from">per month</div></div>
+        </div>
+      </div>
+      <div><div class="sec-h"><div><h2>What happens next</h2></div></div>
+        <div class="timeline">
+          <div class="tl"><div class="when">Done · 02-09</div><h3>Replica on staging</h3><p>Lag under 1 s all week</p></div>
+          <div class="tl next"><div class="when">Next · week of 02-16</div><h3>Route reports</h3><p>Then search</p></div>
+          <div class="tl later"><div class="when">Later</div><h3>Revisit at 3× traffic</h3><p>Sharding only if writes grow</p></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="footer">Query mix from the last 30 days of production logs. Staging replay used 1:1 traffic for 3 days. Prices are list prices for the current region.</div>
+</div>
+</body>
+</html>

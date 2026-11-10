@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Shared link release scope</title>
+<link rel="stylesheet" href="../style.css">
+<style>
+  .scope { display: grid; grid-template-columns: 0.85fr 1.15fr; gap: 28px; }
+  .defaults .pill { width: 100%; }
+  .stage { padding: 22px 18px 20px; }
+  .in li { padding: 12px 0; }
+</style>
+</head>
+<body>
+<div class="page wide">
+  <h1 class="title">This release: shared link → read-only page in the browser</h1>
+  <p class="dek" style="color:var(--text-3); font-size:15px; margin-top:8px">Through merge and production deploy · server and web only (no app release) · decided 03-04: "open the page right after one click"</p>
+  <div class="content" style="margin-top:36px; gap:36px">
+    <div>
+      <div class="flow">
+        <div class="stage"><span class="num lg">1</span><h3>Share email</h3><p>"Dana shared a doc with you"<br>[Open the doc]</p></div>
+        <span class="to">→</span>
+        <div class="stage"><span class="num lg">2</span><h3>Sign in or continue</h3>
+          <div class="split"><div><b>New email</b>one click</div><div><b>Existing account</b>after sign-in</div></div></div>
+        <span class="to">→</span>
+        <div class="stage"><span class="num lg">3</span><h3>Read-only page</h3><p>Headings and comments<br>Only docs shared with you</p></div>
+      </div>
+      <div style="display:grid; grid-template-columns: 1fr 1fr 1fr; gap:48px; margin-top:12px">
+        <div></div><div></div><div class="pill dash" style="font-size:14px">To edit or comment → [Open in the desktop app]</div>
+      </div>
+    </div>
+    <div class="scope">
+      <div class="in"><div class="hd">In</div>
+        <ul><li><span class="check"></span>Share email</li><li><span class="check"></span>Sign in or continue on the web</li><li><span class="check"></span>Read-only page</li><li><span class="check"></span>"Get the app" prompt</li></ul>
+      </div>
+      <div class="out"><div class="hd">Out</div>
+        <div class="cols">
+          <div><span class="tag line">Next release</span><ul><li>Comment on the web</li><li>Copy a link to a heading</li><li>Invite from the web</li></ul></div>
+          <div><span class="tag dash">Later</span><ul><li>Edit on the web</li><li>Web search</li><li>Version history</li><li>Personal docs on the web</li></ul></div>
+          <div><span class="tag mute">Not doing</span><ul><li>Open-in-app deep link</li></ul></div>
+        </div>
+      </div>
+    </div>
+    <div class="defaults" style="--n:3">
+      <b>Defaults</b>
+      <span class="pill">Anyone the doc is shared with can read it</span>
+      <span class="pill">One more click after opening the link (mail scanners)</span>
+      <span class="pill">Web sign-ups get the same free trial</span>
+    </div>
+  </div>
+  <div class="footer plain">Email: Docs &lt;noreply@example.com&gt; · English + one line in the reader's language · links expire in 7 days · 2026-03-04</div>
+</div>
+</body>
+</html>
