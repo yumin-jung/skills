@@ -103,11 +103,13 @@ Not mine — credit and copyright stay with their authors. `vendor/` holds a com
 | [improve-codebase-architecture](./vendor/mattpocock-skills/skills/engineering/improve-codebase-architecture/SKILL.md) | Find deepening opportunities, report them, grill the one you pick. |
 | [writing-for-agents](./vendor/mattpocock-skills/skills/productivity/writing-for-agents/SKILL.md) | How to write a skill, an AGENTS.md, a CLAUDE.md. |
 
-### [jakubkrehel/make-interfaces-feel-better](https://github.com/jakubkrehel/make-interfaces-feel-better)
+## Retired
 
-| Skill | What it does |
-| --- | --- |
-| [make-interfaces-feel-better](./vendor/make-interfaces-feel-better/skills/make-interfaces-feel-better/SKILL.md) | The small details — motion, surfaces, type, icons — that make UI feel finished. |
+Borrowed skills I stopped using. They stay in `vendor/` for reference, but `link-skills.sh` never links them and removes links left by earlier runs.
+
+| Skill | From | Why it's out |
+| --- | --- | --- |
+| [make-interfaces-feel-better](./vendor/make-interfaces-feel-better/skills/make-interfaces-feel-better/SKILL.md) | [jakubkrehel/make-interfaces-feel-better](https://github.com/jakubkrehel/make-interfaces-feel-better) | A UI-polish checklist I rarely loaded in practice. |
 
 ## License
 
